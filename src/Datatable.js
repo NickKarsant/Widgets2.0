@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -17,7 +17,6 @@ import Checkbox from '@mui/material/Checkbox';
 import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { createFilterOptions } from '@mui/material/Autocomplete';
 import Switch from '@mui/material/Switch';
 // import DeleteIcon from '@mui/icons-material/Delete';
 // import FilterListIcon from '@mui/icons-material/FilterList';
@@ -49,8 +48,6 @@ const rows = [
   createData('Marshmallow', 318, 0, 81, 2.0),
   createData('Nougat', 360, 19.0, 9, 37.0),
   createData('Oreo', 437, 18.0, 63, 4.0),
-];
-const otherRows = [
   createData('Dragon', 305, 3.7, 67, 4.3),
   createData('Lizard', 452, 25.0, 51, 4.9),
   createData('Griffon', 262, 16.0, 24, 6.0),
@@ -62,15 +59,6 @@ const otherRows = [
 
 ];
 
-
-const foodOptions = [
-  { name: 'Cupcake', calories: 305, fat: 3.7, carbs: 67, protein: 4.3  },
-  { name: 'Oreo', calories: 305, fat: 3.7, carbs: 67, protein: 4.3  },
-  { name: 'Cake', calories: 405, fat: 3.7, carbs: 67, protein: 4.3  },
-  { name: 'Chocolate Bar', calories: 35, fat: 10, carbs: 67, protein: 0  },
-  { name: 'Leek', calories: 5, fat: 0, carbs: 0, protein: 0  },
-
-]
 
 
 function descendingComparator(a, b, orderBy) {
@@ -255,9 +243,10 @@ export const EnhancedTable = ({filterTerm}) => {
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
+  const filteredData = rows.filter(food => food.name.toLowerCase().includes(filterTerm.toLowerCase()));
 
-    const filteredData = rows.filter(food => food.name.includes(filterTerm));
 
+    const combo =  filteredData.length < rows.length ? filteredData : rows;   
 
 
   const handleRequestSort = (event, property) => {
@@ -336,7 +325,7 @@ export const EnhancedTable = ({filterTerm}) => {
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(filteredData, getComparator(order, orderBy))
+              {stableSort(combo, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.name);
