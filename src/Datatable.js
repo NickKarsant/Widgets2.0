@@ -23,7 +23,6 @@ import Switch from '@mui/material/Switch';
 // import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-const filter = createFilterOptions();
 
 
 function createData(name, calories, fat, carbs, protein) {
@@ -63,7 +62,6 @@ const otherRows = [
 
 ];
 
-// console.log(rows)
 
 const foodOptions = [
   { name: 'Cupcake', calories: 305, fat: 3.7, carbs: 67, protein: 4.3  },
@@ -249,7 +247,7 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export const EnhancedTable = (filterTerm) => {
+export const EnhancedTable = ({filterTerm}) => {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
@@ -259,7 +257,6 @@ export const EnhancedTable = (filterTerm) => {
 
 
     const filteredData = rows.filter(food => food.name.includes(filterTerm));
-
 
 
 
@@ -339,7 +336,7 @@ export const EnhancedTable = (filterTerm) => {
             <TableBody>
               {/* if you don't need to support IE11, you can replace the `stableSort` call with:
                  rows.slice().sort(getComparator(order, orderBy)) */}
-              {stableSort(rows, getComparator(order, orderBy))
+              {stableSort(filteredData, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
                   const isItemSelected = isSelected(row.name);
