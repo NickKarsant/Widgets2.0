@@ -242,7 +242,6 @@ export const EnhancedTable = ({filterTerm}) => {
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [dataToDisplay, setDataToDisplay] = React.useState(rows);
 
   const filteredData = rows.filter(food => food?.name?.toLowerCase().includes(filterTerm?.toLowerCase()));
 
