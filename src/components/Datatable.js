@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -20,6 +20,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { visuallyHidden } from '@mui/utils';
 import { rows } from '../data/database'
+
 
 
 function descendingComparator(a, b, orderBy) {
@@ -196,19 +197,22 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export const EnhancedTable = ({filterTerm}) => {
-  const [order, setOrder] = React.useState('asc');
-  const [orderBy, setOrderBy] = React.useState('calories');
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [dense, setDense] = React.useState(false);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+export const EnhancedTable = ({data, filterTerm}) => {
+  const [order, setOrder] = useState('asc');
+  const [orderBy, setOrderBy] = useState('calories');
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [dense, setDense] = useState(false);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
 
   const filteredData = rows.filter(food => food?.name?.toLowerCase().includes(filterTerm?.toLowerCase()));
 
 
-    const combo =  filteredData.length > 0 ? filteredData : rows;   
+    const combo =  filteredData.length > 0 ? filteredData : data;   
   
+// tuesday April 19th,  next find a way to display dragona dn food rows if no API data, otherwise cahgne dataTable display to fit for info about Wikipedia call
+    console.log(combo)
 
 
   const handleRequestSort = (event, property) => {
