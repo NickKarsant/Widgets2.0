@@ -45,9 +45,9 @@ export const App = () => {
 
   }, [searchValue, results.length])
 
-results.map((item) => {
-    console.log(item.title)
-  })
+// results?.map((item) => {
+//     console.log(item.title)
+//   })
 
 
 

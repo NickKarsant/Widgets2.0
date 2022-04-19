@@ -40,7 +40,7 @@ function getComparator(order, orderBy) {
 }
 
 function stableSort(array, comparator) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
+  const stabilizedThis = array?.map((el, index) => [el, index]);
   stabilizedThis.sort((a, b) => {
     const order = comparator(a[0], b[0]);
     if (order !== 0) {
@@ -208,11 +208,8 @@ export const EnhancedTable = ({data, filterTerm}) => {
 
   const filteredData = rows.filter(food => food?.name?.toLowerCase().includes(filterTerm?.toLowerCase()));
 
-
-    const combo =  filteredData.length > 0 ? filteredData : data;   
-  
-// tuesday April 19th,  next find a way to display dragona dn food rows if no API data, otherwise cahgne dataTable display to fit for info about Wikipedia call
-    console.log(combo)
+ const firstSorting = data ? data : rows 
+    const combo =  filteredData.length > 0 ? filteredData : firstSorting;   
 
 
   const handleRequestSort = (event, property) => {
@@ -269,6 +266,7 @@ export const EnhancedTable = ({data, filterTerm}) => {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
+
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
@@ -304,7 +302,7 @@ export const EnhancedTable = ({data, filterTerm}) => {
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.name}
+                      key={row?.name || row?.title}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -319,15 +317,17 @@ export const EnhancedTable = ({data, filterTerm}) => {
                       <TableCell
                         component="th"
                         id={labelId}
-                        scope="row"
+                        scope="row?"
                         padding="none"
                       >
-                        {row.name}
+                        {row?.name || row?.title}
                       </TableCell>
-                      <TableCell align="right">{row.calories}</TableCell>
-                      <TableCell align="right">{row.fat}</TableCell>
-                      <TableCell align="right">{row.carbs}</TableCell>
-                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">{row?.calories  || row?.pageID }</TableCell>
+                      <TableCell align="right">{row?.fat  || row?.size }</TableCell>
+                      <TableCell align="right">{row?.carbs  || row?.wordcount }</TableCell>
+                     {row?.protein ? <TableCell align="right">{row?.protein}</TableCell> : 
+                     <span dangerouslySetInnerHTML={{__html:row?.snippet}}></span>
+                     }
                     </TableRow>
                   );
                 })}
