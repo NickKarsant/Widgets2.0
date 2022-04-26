@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {items} from './data/database.js'
-import {Accordion} from './components/Accordion'
-import {Search} from './components/Search'
-import {EnhancedTable} from './components/Datatable'
+import {items, options} from './data/database.js'
+import {Search, Accordion, EnhancedTable, Dropdown} from './components/'
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 
@@ -11,6 +9,9 @@ import axios from 'axios';
 export const App = () => {
   const [searchValue, setSearchValue] = useState(null);
   const [results, setResults] = useState('');
+  const [selected, setSelected] = useState(options[0])
+
+
 
 
 
@@ -45,11 +46,6 @@ export const App = () => {
 
   }, [searchValue, results.length])
 
-// results?.map((item) => {
-//     console.log(item.title)
-//   })
-
-
 
 
   return (
@@ -62,7 +58,7 @@ export const App = () => {
         <Search />
 
       </div>
-<hr/>
+      <hr/>
       <div className='filterDataTable'  style={{marginTop: '3em'}}>
         <TextField sx={{ width:'50%' }}
           onChange={(event) => {
@@ -71,6 +67,11 @@ export const App = () => {
           }
         }} label="Filter Data Table" />
         <EnhancedTable data={results} filterTerm={searchValue}/>
+      </div>
+
+      <div className='dropdown'>
+        <Dropdown selected={selected}  onSelectedChange={setSelected} options={options}/>
+
       </div>
     
     </div>

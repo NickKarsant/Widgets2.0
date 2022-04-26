@@ -31,33 +31,46 @@ export const items = [
 ];
 
 export const options = [
+
   {
-    label: "Black",
-    value: "black"
+    label: "A Shade of Blue",
+    value: "blue",
+    hex: "000080"
+
   },
   {
-    label: "Blue",
-    value: "blue"
+    label: "The Color Brown",
+    value: "brown",
+    hex: "563d2d"
+
+  },  {
+    label: "The Color Black",
+    value: "black",
+    hex: "000000"
   },
   {
-    label: "Brown",
-    value: "brown"
+    label: "A Shade of Green",
+    value: "green",
+    hex: "008000"
+
   },
   {
-    label: "Green",
-    value: "green"
+    label: "The Color Lime",
+    value: "lime",
+    hex: "00FF00"
+
   },
   {
-    label: "Lime",
-    value: "lime"
+    label: "The Color Purple",
+    value: "purple",
+    hex: "800080"
+
   },
   {
-    label: "Purple",
-    value: "purple"
-  },
-  {
-    label: "Red",
-    value: "red"
+    label: "The Color Red",
+    value: "red",
+    hex: "FF0000"
+
   }
 ];
 
