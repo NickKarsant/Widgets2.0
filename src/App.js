@@ -10,6 +10,7 @@ export const App = () => {
   const [searchValue, setSearchValue] = useState(null);
   const [results, setResults] = useState('');
   const [selected, setSelected] = useState(options[0])
+  const [showDropdown, setShowDropdown] = useState(true)
 
 
 
@@ -69,9 +70,12 @@ export const App = () => {
         <EnhancedTable data={results} filterTerm={searchValue}/>
       </div>
 
-      <div className='dropdown'>
-        <Dropdown selected={selected}  onSelectedChange={setSelected} options={options}/>
 
+      <div className='dropdown'>
+      <button onClick={()=>{setShowDropdown(!showDropdown)}}>Toggle Dropdown</button>
+      { showDropdown &&
+        <Dropdown selected={selected}  onSelectedChange={setSelected} options={options}/>
+      }
       </div>
     
     </div>
