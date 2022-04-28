@@ -2,10 +2,13 @@ import React, {useState, useEffect, useRef}  from 'react'
 
 export const Dropdown = ({options, selected, onSelectedChange}) => {
   const [openDropdown, setOpenDropdown] = useState(false)
+  const [currentOption, setCurrentOption] = useState(options[0])
   const ref = useRef();
+
 
   const makeSelection = (option) => {
     onSelectedChange(option)
+    setCurrentOption(option)
     setOpenDropdown(!openDropdown)
   }
 
@@ -38,7 +41,7 @@ const renderedOptions = options.filter((item => item.value !== selected.value ))
     <div className="ui form" ref={ref}  style={{width: '60%', paddingBottom: '2em'}}>
       <div className="field">
         <label className='label'>
-          Select a Color       
+        {currentOption.hex  ? 'Select a Color' : 'Select a Language'}
         </label>
         <div  onClick={() => {setOpenDropdown(!openDropdown)}  }  className={`ui selection dropdown ${ openDropdown ? 'visible active' : ''}`}>
           <div className="text" style={{color: selected ? `#${selected.hex}` : `#${options[0].hex}` }}> 
@@ -51,6 +54,11 @@ const renderedOptions = options.filter((item => item.value !== selected.value ))
           </i> 
         </div>
       </div>
+
+       
+      <p style={{color: `#${currentOption.hex}` }}> {currentOption.hex  ? `The text color is ${currentOption.value}.` : `The language is ${currentOption.label}.`}   </p>
+  
+
     </div>
   );
 }

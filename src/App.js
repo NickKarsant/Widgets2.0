@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {items, options} from './data/database.js'
-import {Search, Accordion, EnhancedTable, Dropdown} from './components/'
+import {items, colors} from './data/database.js'
+import {Search, Accordion, EnhancedTable, Dropdown, Translate} from './components/'
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
 
@@ -9,7 +9,7 @@ import axios from 'axios';
 export const App = () => {
   const [searchValue, setSearchValue] = useState(null);
   const [results, setResults] = useState('');
-  const [selected, setSelected] = useState(options[0])
+  const [selected, setSelected] = useState(colors[0])
   const [showDropdown, setShowDropdown] = useState(true)
 
 
@@ -42,7 +42,7 @@ export const App = () => {
   
       return () => {
         clearTimeout(timeoutId)
-       };
+      };
     }
 
   }, [searchValue, results.length])
@@ -72,12 +72,17 @@ export const App = () => {
 
 
       <div className='dropdown'>
-      <button onClick={()=>{setShowDropdown(!showDropdown)}}>Toggle Dropdown</button>
+      <button onClick={()=>{setShowDropdown(!showDropdown)}}>Toggle Dropdowns</button>
       { showDropdown &&
-        <Dropdown selected={selected}  onSelectedChange={setSelected} options={options}/>
+      <>
+        
+        <Dropdown selected={selected}  onSelectedChange={setSelected} options={colors}/>
+        <Translate/>
+      </>
       }
       </div>
-    
+
+     
     </div>
  
 

@@ -30,7 +30,32 @@ export const items = [
   }
 ];
 
-export const options = [
+
+export const languages = [ 
+  {
+    label: 'Afrikaans',
+  value: 'af'
+  },
+  {
+    label: 'Arabic',
+  value: 'ar'
+  },
+  {
+    label: 'Chinese',
+  value: 'ch'
+  },
+  {
+    label: 'Greek',
+  value: 'gr'
+  },
+  {
+    label: 'Hindi',
+  value: 'hi'
+  },
+];
+
+
+export const colors = [
 
   {
     label: "A Shade of Blue",
