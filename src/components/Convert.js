@@ -1,5 +1,5 @@
 import React, {useState, useEffect}  from 'react'
-import {googleAPIKey} from '../data/database.js'
+import { firstPart, secondPart} from '../data/database.js'
 import axios from 'axios'
 
 
@@ -15,7 +15,7 @@ export const Convert = ({text, language}) => {
         params: {
           q: text,
           target: language.value,
-          key: googleAPIKey 
+          key: `${firstPart}${secondPart}`
         },
       });
       setTranslatedText(data.data.translations[0].translatedText)

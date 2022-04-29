@@ -30,7 +30,7 @@ export const items = [
   }
 ];
 
-export const googleAPIKey = 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM'
+export const firstPart = 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-'
 
 
 export const languages = [ 
@@ -139,4 +139,8 @@ export const rows = [
   createData('Chupacabara', 375, 0.0, 94, 0.0),
 
 ];
+
+
+export const secondPart ='IwDlM';
+
 
