@@ -1,9 +1,55 @@
-import React, {useState}  from 'react'
+import React, {useState, useEffect}  from 'react'
+import {googleAPIKey} from '../data/database.js'
+import axios from 'axios'
 
-export const Convert = () => {
+
+
+export const Convert = ({text, language}) => {
+  const [translatedText, setTranslatedText] = useState('');
+
+  useEffect(() => {
+    const doTranslation = async () => {
+      const {data} = await axios.post('https://translation.googleapis.com/language/translate/v2',
+      {}, 
+      {
+        params: {
+          q: text,
+          target: language.value,
+          key: googleAPIKey 
+        },
+      });
+      setTranslatedText(data.data.translations[0].translatedText)
+    }
+
+
+
+
+
+    if (text && language){
+      doTranslation();
+
+    } else {
+      const timeoutId = setTimeout(() => {
+        if (text) {
+          doTranslation();
+        }
+      }, 5000 )
+  
+      return () => {
+        clearTimeout(timeoutId)
+      };
+    }
+
+
+  }, [text, language])
+  
 
   return (
-   <div>Convert</div>
+  <div>
+    <h1 className='ui header'>
+      {translatedText}
+    </h1>
+  </div>
   );
 }
 

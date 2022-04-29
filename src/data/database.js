@@ -30,6 +30,8 @@ export const items = [
   }
 ];
 
+export const googleAPIKey = 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM'
+
 
 export const languages = [ 
   {
@@ -42,15 +44,19 @@ export const languages = [
   },
   {
     label: 'Chinese',
-  value: 'ch'
+  value: 'zh-CN'
   },
   {
     label: 'Greek',
-  value: 'gr'
+  value: 'el'
   },
   {
     label: 'Hindi',
   value: 'hi'
+  },
+  {
+    label: 'Armenian',
+  value: 'hy'
   },
 ];
 
