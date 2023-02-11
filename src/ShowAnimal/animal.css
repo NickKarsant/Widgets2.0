@@ -1,0 +1,40 @@
+.animalApp{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
+
+.addButton {
+  background-color: lightgreen;
+  border: 1px solid green;
+  border-radius: 3px;
+  font-size: 20px;
+  width: 30%
+}
+
+.animalList {
+  flex-direction: row;
+  display: flex; 
+  flex-wrap: wrap;
+  justify-content: 'center'
+}
+
+.animalShow {
+  position: relative;
+  border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow: 0px 3px 4px lightgray;
+  margin: 10px
+
+}
+
+.animal {
+  height: 200px;
+}
+
+.heart{
+  position: absolute;
+  right: 10%;
+  bottom: 10%
+
+}

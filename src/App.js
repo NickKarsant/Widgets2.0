@@ -3,6 +3,8 @@ import {items, colors} from './data/database.js'
 import {Search, Accordion, EnhancedTable, Dropdown, Translate} from './components/'
 import TextField from '@mui/material/TextField';
 import axios from 'axios';
+import { AnimalApp }  from './ShowAnimal/AnimalApp.js'
+import { SearchImagesApp }  from './SearchImages/SearchImagesApp'
 
 
 
@@ -11,9 +13,6 @@ export const App = () => {
   const [results, setResults] = useState('');
   const [selected, setSelected] = useState(colors[0])
   const [showDropdown, setShowDropdown] = useState(true)
-
-
-
 
 
   useEffect(() => { 
@@ -54,7 +53,10 @@ export const App = () => {
       
     <div className="app">
 
+
       <div className='widgets'>
+        <SearchImagesApp/>
+        <AnimalApp />
         <Accordion items={items}/>
         <Search />
 
