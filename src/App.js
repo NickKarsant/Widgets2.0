@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import axios from 'axios';
 import { AnimalApp }  from './ShowAnimal/AnimalApp.js'
 import { SearchImagesApp }  from './SearchImages/SearchImagesApp'
+import { BookListApp }  from './BookList/BookListApp'
 
 
 
@@ -51,10 +52,11 @@ export const App = () => {
   return (
     <>
       
-    <div className="app">
 
 
+    {/* <div className="app">
       <div className='widgets'>
+
         <SearchImagesApp/>
         <AnimalApp />
         <Accordion items={items}/>
@@ -71,22 +73,18 @@ export const App = () => {
         }} label="Filter Data Table" />
         <EnhancedTable data={results} filterTerm={searchValue}/>
       </div>
-
-
       <div className='dropdown'>
       <button onClick={()=>{setShowDropdown(!showDropdown)}}>Toggle Dropdowns</button>
       { showDropdown &&
       <>
-        
         <Dropdown selected={selected}  onSelectedChange={setSelected} options={colors}/>
         <Translate/>
       </>
       }
       </div>
+    </div> */}
 
-     
-    </div>
- 
+    <BookListApp />
 
 
 
